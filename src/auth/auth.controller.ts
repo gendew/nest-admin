@@ -33,6 +33,6 @@ export class AuthController {
   async logout(@Req() req: any) {
     const token = req.headers.authorization.split(' ')[1];
     await this.authService.logout(token);
-    return { message: '退出成�? };
+    return { message: '退出成功' };
   }
 }
