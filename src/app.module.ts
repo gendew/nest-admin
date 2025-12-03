@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+﻿import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -20,10 +20,10 @@ import { RbacModule } from './rbac/rbac.module';
       port: 5432,
       username: 'postgres',
       password: 'gendew',
-      database: 'mini_shop', // 你刚创建的数据库
+      database: 'mini_shop', // 你新建的数据库
 
-      autoLoadEntities: true, // 自动加载所有实�?
-      synchronize: true, // 自动创建/更新�?(仅开发环境使�?!)
+      autoLoadEntities: true, // 自动加载所有实体
+      synchronize: true, // 自动创建/更新表（仅开发环境使用）
       logging: true, // 打印执行 SQL
     }),
     ConfigModule.forRoot({

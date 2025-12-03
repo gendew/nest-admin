@@ -26,6 +26,6 @@ export class UserController {
   async logout(@Req() req: Request) {
     const token = req.headers.authorization?.split(' ')[1];
     await this.authService.logout(token);
-    return { message: '閫€鍑虹櫥褰曟垚锟?' };
+    return { message: '退出登录成功' };
   }
 }

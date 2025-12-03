@@ -37,10 +37,10 @@ export class UserService {
     });
 
     if (!user) {
-      throw new NotFoundException('鐢ㄦ埛涓嶅瓨鍦?);
+      throw new NotFoundException('用户不存在');
     }
 
-    // 缂撳瓨 5 鍒嗛挓锛堝ご鍍忔敼浜嗕篃鑳藉緢蹇敓鏁堬級
+    // 缓存 5 分钟（头像改了也能很快生效）
     await this.redisService.set(cacheKey, JSON.stringify(user), 300);
 
     return user;
