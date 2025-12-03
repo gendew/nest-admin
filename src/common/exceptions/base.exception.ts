@@ -32,7 +32,7 @@ export class BusinessException extends BaseException {
   }
 }
 
-// 系统异常（要报警）
+// 系统异常（要报警�?
 export class SystemException extends BaseException {
   constructor(code = ErrorCode.INTERNAL_ERROR, message?: string, errors?: any) {
     super(code, message, errors, HttpStatus.INTERNAL_SERVER_ERROR);

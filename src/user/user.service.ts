@@ -37,7 +37,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw new NotFoundException('用户不存在');
+      throw new NotFoundException('用户不存�?);
     }
 
     // 缓存 5 分钟（头像改了也能很快生效）

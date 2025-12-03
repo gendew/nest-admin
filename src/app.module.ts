@@ -22,8 +22,8 @@ import { RbacModule } from './rbac/rbac.module';
       password: 'gendew',
       database: 'mini_shop', // 你刚创建的数据库
 
-      autoLoadEntities: true, // 自动加载所有实体
-      synchronize: true, // 自动创建/更新表 (仅开发环境使用!!)
+      autoLoadEntities: true, // 自动加载所有实�?
+      synchronize: true, // 自动创建/更新�?(仅开发环境使�?!)
       logging: true, // 打印执行 SQL
     }),
     ConfigModule.forRoot({

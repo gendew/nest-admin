@@ -31,12 +31,12 @@ export class UnifiedResponseInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       mergeMap((data) => {
-        // 1. 文件流、Buffer、原始响应等特殊类型 → 直接短路返回
+        // 1. 文件流、Buffer、原始响应等特殊类型 �?直接短路返回
         if (this.isSpecialResponse(data)) {
           return of(data);
         }
 
-        // 2. 普通数据 → 进入统一包装流水线（泛型完美推导！）
+        // 2. 普通数�?�?进入统一包装流水线（泛型完美推导！）
         return of(data).pipe(
           map((raw) => this.wrapSuccess(raw, context)),
           map((res) => this.normalizePagination(res)),
@@ -46,7 +46,7 @@ export class UnifiedResponseInterceptor implements NestInterceptor {
     );
   }
 
-  // 关键判断函数：安全地检测是否是“特殊响应类型”
+  // 关键判断函数：安全地检测是否是“特殊响应类型�?
   private isSpecialResponse(data: any): boolean {
     if (data === null || data === undefined) return true;
 
@@ -56,11 +56,11 @@ export class UnifiedResponseInterceptor implements NestInterceptor {
     // 2. Buffer
     if (data instanceof Buffer) return true;
 
-    // 3. 可读流（ReadStream）
+    // 3. 可读流（ReadStream�?
     if (typeof data?.pipe === 'function') return true;
 
-    // 4. 原生 Express 响应对象（极少用，但要防）
-    // 必须先判断是对象，再判断属性是否存在
+    // 4. 原生 Express 响应对象（极少用，但要防�?
+    // 必须先判断是对象，再判断属性是否存�?
     if (typeof data === 'object' && data !== null) {
       // 安全判断 headers 是否存在
       if ('headers' in data && 'body' in data) return true;
@@ -71,7 +71,7 @@ export class UnifiedResponseInterceptor implements NestInterceptor {
     return false;
   }
 
-  // ① 泛型基础包装
+  // �?泛型基础包装
   private wrapSuccess<T>(
     data: T,
     context: ExecutionContext,
@@ -86,7 +86,7 @@ export class UnifiedResponseInterceptor implements NestInterceptor {
     };
   }
 
-  // ② 分页标准化（泛型 + 类型守卫）
+  // �?分页标准化（泛型 + 类型守卫�?
   private normalizePagination<T>(
     response: UnifiedResponse<T>,
   ): UnifiedResponse<any> {
@@ -127,7 +127,7 @@ export class UnifiedResponseInterceptor implements NestInterceptor {
     return response;
   }
 
-  // ③ 敏感数据脱敏（深度遍历 + 泛型保留）
+  // �?敏感数据脱敏（深度遍�?+ 泛型保留�?
   private maskSensitiveData<T>(
     response: UnifiedResponse<T>,
   ): UnifiedResponse<T> {

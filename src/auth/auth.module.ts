@@ -14,12 +14,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   imports: [
     TypeOrmModule.forFeature([User, RefreshToken]), // 只注册这里！
     JwtModule.registerAsync({
-      imports: [ConfigModule], // ← 必须加这行！
+      imports: [ConfigModule], // �?必须加这行！
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
         signOptions: { expiresIn: '15m' },
       }),
-      inject: [ConfigService], // ← 必须加这行！
+      inject: [ConfigService], // �?必须加这行！
     }),
   ],
   providers: [AuthService, AuthGuard, JwtStrategy],

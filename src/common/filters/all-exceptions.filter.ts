@@ -11,9 +11,9 @@ import { Request, Response } from 'express';
 import { ErrorCode } from '../enums/error-code.enum';
 import { BusinessException } from '../exceptions/base.exception';
 
-@Catch() // 捕获所有异常
+@Catch() // 捕获所有异�?
 export class AllExceptionsFilter implements ExceptionFilter {
-  // 保留一个 Logger 只是为了在极端情况下（中间件没抓到）兜底
+  // 保留一�?Logger 只是为了在极端情况下（中间件没抓到）兜底
   private readonly logger = new Logger(AllExceptionsFilter.name);
 
   catch(exception: unknown, host: ArgumentsHost) {
@@ -21,13 +21,13 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
-    // 默认值
+    // 默认�?
     let code = ErrorCode.INTERNAL_ERROR;
-    let message = '服务器内部错误';
+    let message = '服务器内部错�?;
     let errors: any = null;
     let httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 
-    // 1. 业务异常（我们自己抛的，不记 error 日志）
+    // 1. 业务异常（我们自己抛的，不记 error 日志�?
     if (exception instanceof BusinessException) {
       const res = exception.getResponse() as any;
       code = res.code || ErrorCode.INTERNAL_ERROR;
@@ -35,7 +35,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       errors = res.errors || null;
       httpStatus = HttpStatus.OK; // 业务异常强制返回 200
     }
-    // 2. 其他 Nest HttpException（如 BadRequestException、ValidationPipe 抛的）
+    // 2. 其他 Nest HttpException（如 BadRequestException、ValidationPipe 抛的�?
     else if (exception instanceof HttpException) {
       const res = exception.getResponse();
       httpStatus = exception.getStatus();
@@ -45,7 +45,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       } else if (res && typeof res === 'object') {
         message = (res as any).message || exception.message;
         if (Array.isArray(message)) {
-          message = message[0]; // class-validator 的情况
+          message = message[0]; // class-validator 的情�?
         }
         code = (res as any).code || httpStatus;
         errors =
@@ -64,28 +64,28 @@ export class AllExceptionsFilter implements ExceptionFilter {
     else if (exception instanceof Error) {
       message =
         process.env.NODE_ENV === 'production'
-          ? '服务器内部错误'
+          ? '服务器内部错�?
           : exception.message;
       code = ErrorCode.INTERNAL_ERROR;
 
-      // 关键：把错误信息塞到 res.locals，供日志中间件自动采集
+      // 关键：把错误信息塞到 res.locals，供日志中间件自动采�?
       response.locals.error = {
         name: exception.name,
         message: exception.message,
         stack: exception.stack,
       };
 
-      // 兜底日志（万一中间件没抓到）
-      this.logger.error(`未捕获异常: ${exception.message}`, exception.stack);
+      // 兜底日志（万一中间件没抓到�?
+      this.logger.error(`未捕获异�? ${exception.message}`, exception.stack);
     }
 
-    // 4. 完全未知的错误（极少）
+    // 4. 完全未知的错误（极少�?
     else {
       message = '未知错误';
       response.locals.error = { message: String(exception) };
     }
 
-    // 统一响应体
+    // 统一响应�?
     const payload: UnifiedResponse<null> = {
       code,
       data: null,
@@ -96,7 +96,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       ...(errors ? { errors } : {}),
     };
 
-    // 业务异常返回 200，其他根据情况
+    // 业务异常返回 200，其他根据情�?
     response.status(code >= 10000 ? HttpStatus.OK : httpStatus).json(payload);
   }
 }

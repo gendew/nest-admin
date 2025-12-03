@@ -19,11 +19,11 @@ export class AuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.switchToHttp().getRequest<Request>();
     const token = this.extractToken(req);
-    if (!token) throw new UnauthorizedException('请登录');
+    if (!token) throw new UnauthorizedException('请登�?);
 
     // 1. 黑名单（主动退出）
     if (await this.authService.isBlacklisted(token)) {
-      throw new UnauthorizedException('登录已失效');
+      throw new UnauthorizedException('登录已失�?);
     }
 
     // 2. 验证签名 + 过期时间
@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
       req.user = payload;
       return true;
     } catch (err: any) {
-      throw new UnauthorizedException('登录已过期，请重新登录');
+      throw new UnauthorizedException('登录已过期，请重新登�?);
     }
   }
 

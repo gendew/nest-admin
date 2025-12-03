@@ -21,10 +21,10 @@ async function bootstrap() {
   // 参数验证
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
-  // 全局异常过滤器
+  // 全局异常过滤�?
   app.useGlobalFilters(new AllExceptionsFilter());
 
-  // 全局时间格式化过滤
+  // 全局时间格式化过�?
   app.useGlobalInterceptors(new FormatDateInterceptor());
 
   await app.listen(3000);

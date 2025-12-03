@@ -11,7 +11,7 @@ export enum ErrorCode {
   VALIDATION_FAILED = 10022,
   TOO_MANY_REQUESTS = 10429,
 
-  // 业务错误 2xxxx（按模块划分）
+  // 业务错误 2xxxx（按模块划分�?
   USER_NOT_FOUND = 20001,
   USER_DISABLED = 20002,
   LOGIN_FAILED = 20003,

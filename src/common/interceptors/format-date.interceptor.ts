@@ -42,7 +42,7 @@ export class FormatDateInterceptor implements NestInterceptor {
     const format =
       Reflect.getMetadata(DATE_FORMAT_KEY, handler) || 'YYYY-MM-DD HH:mm:ss';
 
-    /** 字段白名单 */
+    /** 字段白名�?*/
     const whitelist: string[] | undefined = Reflect.getMetadata(
       DATE_FIELD_WHITELIST,
       handler,

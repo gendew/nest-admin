@@ -9,14 +9,14 @@ import {
 import { User } from '../../entities/user.entity';
 
 @Entity()
-@Index(['token']) // 方便挤号时快速查找
+@Index(['token']) // 方便挤号时快速查�?
 export class RefreshToken {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: 'text' })
   @Column()
-  token: string; // 存 refresh_token 的哈希（安全）
+  token: string; // �?refresh_token 的哈希（安全�?
 
   @Column()
   userId: number;
