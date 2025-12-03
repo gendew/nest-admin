@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+﻿import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 // import { CreateUserDto } from './dto/create-user.dto';
 import { AuthService } from 'src/auth/auth.service';
@@ -26,6 +26,6 @@ export class UserController {
   async logout(@Req() req: Request) {
     const token = req.headers.authorization?.split(' ')[1];
     await this.authService.logout(token);
-    return { message: '退出登录成�? };
+    return { message: '閫€鍑虹櫥褰曟垚锟?' };
   }
 }

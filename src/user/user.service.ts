@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+﻿import { Injectable, NotFoundException } from '@nestjs/common';
 import { RedisService } from 'src/redis/redis.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/entities/user.entity';
@@ -37,10 +37,10 @@ export class UserService {
     });
 
     if (!user) {
-      throw new NotFoundException('用户不存�?);
+      throw new NotFoundException('鐢ㄦ埛涓嶅瓨鍦?);
     }
 
-    // 缓存 5 分钟（头像改了也能很快生效）
+    // 缂撳瓨 5 鍒嗛挓锛堝ご鍍忔敼浜嗕篃鑳藉緢蹇敓鏁堬級
     await this.redisService.set(cacheKey, JSON.stringify(user), 300);
 
     return user;
