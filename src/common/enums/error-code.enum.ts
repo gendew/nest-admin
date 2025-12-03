@@ -1,0 +1,24 @@
+// src/common/enums/error-code.enum.ts
+export enum ErrorCode {
+  SUCCESS = 0,
+
+  // 通用错误 1xxxx
+  BAD_REQUEST = 10000,
+  UNAUTHORIZED = 10001,
+  FORBIDDEN = 10003,
+  NOT_FOUND = 10004,
+  CONFLICT = 10009,
+  VALIDATION_FAILED = 10022,
+  TOO_MANY_REQUESTS = 10429,
+
+  // 业务错误 2xxxx（按模块划分）
+  USER_NOT_FOUND = 20001,
+  USER_DISABLED = 20002,
+  LOGIN_FAILED = 20003,
+  USER_EXISTS = 20004,
+  ORDER_EXPIRED = 30001,
+
+  // 系统错误 9xxxx
+  INTERNAL_ERROR = 99999,
+  SERVICE_UNAVAILABLE = 99998,
+}
